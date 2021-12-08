@@ -3,36 +3,36 @@
   needs: Needs;
 }
 
-export interface Population extends ReadonlyMap<string, number> {
-  beggars: number;
-  peasants: number;
-  citizens: number;
-  patricians: number;
-  noblemen: number;
-  nomads: number;
-  envoys: number;
-}
+export type PopulationType = 'beggars' |
+  'peasants' |
+  'citizens' |
+  'patricians' |
+  'noblemen' |
+  'nomads' |
+  'envoys';
 
-export interface Needs extends ReadonlyMap<string, number>{
-  fish: number;
-  spices: number;
-  bread: number;
-  meat: number;
-  most: number;
-  beer: number;
-  wine: number;
-  garments: number;
-  jerkins: number;
-  furCoats: number;
-  robes: number;
-  books: number;
-  candleSticks: number;
-  glasses: number;
-  dates: number;
-  milk: number;
-  carpets: number;
-  coffee: number;
-  pearlNecklaces: number;
-  perfume: number;
-  marzipan: number;
-}
+export type NeedsType = 'fish' |
+  'spices' |
+  'bread' |
+  'meat' |
+  'most' |
+  'beer' |
+  'wine' |
+  'garments' |
+  'jerkins' |
+  'furCoats' |
+  'robes' |
+  'books' |
+  'candleSticks' |
+  'glasses' |
+  'dates' |
+  'milk' |
+  'carpets' |
+  'coffee' |
+  'pearlNecklaces' |
+  'perfume' |
+  'marzipan';
+
+export type Population = Record<PopulationType, number>;
+
+export type Needs = Record<NeedsType, number>;
