@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AnnoService} from "../anno.service";
 import {Info} from "../_models/Modes";
 import {KeyValue} from "@angular/common";
@@ -8,8 +8,10 @@ import {KeyValue} from "@angular/common";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-  info: Info | undefined;
+export class HomeComponent implements OnInit, OnDestroy {
+  info?: Info;
+  updateDate?: Date;
+  interval?: number;
   noOrder = (a: KeyValue<string, number>, b: KeyValue<string, number>): number => {
     return 0;
   };
@@ -19,10 +21,18 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.refresh();
+    this.interval = setInterval(() => this.refresh(), 60000);
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.interval);
   }
 
   refresh(): void {
-    this.annoService.getInfo().subscribe(value => this.info = value);
+    this.annoService.getInfo().subscribe(value => {
+      this.info = value;
+      this.updateDate = new Date();
+    });
   }
 
   iconPath(key: string): string {

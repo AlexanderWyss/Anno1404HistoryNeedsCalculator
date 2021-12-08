@@ -1,4 +1,7 @@
-<input type="button" (click)="refresh()" value="Refresh"/>
+<div>
+  <input type="button" (click)="refresh()" value="Refresh"/>
+  <small *ngIf="updateDate">{{updateDate | date: 'HH:mm'}}</small>
+</div>
 <div *ngIf="info">
   <div>
     <h3>Population</h3>
