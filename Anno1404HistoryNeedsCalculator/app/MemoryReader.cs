@@ -3,14 +3,14 @@ using System.Runtime.InteropServices;
 
 namespace Anno1404HistoryNeedsCalculator.app;
 
-public class MemoryReader
+public static class MemoryReader
 {
     [DllImport("kernel32.dll", SetLastError = true)]
-    public static extern bool ReadProcessMemory(int hProcess, long lpBaseAddress, byte[] lpBuffer, int dwSize,
+    private static extern bool ReadProcessMemory(int hProcess, long lpBaseAddress, byte[] lpBuffer, int dwSize,
         ref int lpNumberOfBytesRead);
 
     [DllImport("kernel32.dll")]
-    public static extern UInt32 GetLastError();
+    private static extern UInt32 GetLastError();
 
     public static int ReadAddressInt(Process process, long address)
     {

@@ -6,8 +6,6 @@ public static class PopulationReader
 {
     public static Population ReadPopulation(string processName)
     {
-        var population = new Population();
-
         if (processName.EndsWith(".exe"))
         {
             processName = processName.Remove(processName.Length - 4);
@@ -20,14 +18,16 @@ public static class PopulationReader
 
         var baseAddress = MemoryReader.ReadAddressLong(process, Addresses.PopulationPointer);
 
-        population.Beggars = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Beggars);
-        population.Peasants = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Peasants);
-        population.Citizens = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Citizens);
-        population.Patricians = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Patricians);
-        population.Noblemen = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Noblemens);
-        population.Nomads = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Nomads);
-        population.Envoys = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Envoys);
-
+        var population = new Population()
+        {
+            Beggars = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Beggars),
+            Peasants = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Peasants),
+            Citizens = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Citizens),
+            Patricians = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Patricians),
+            Noblemen = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Noblemens),
+            Nomads = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Nomads),
+            Envoys = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Envoys)
+        };
         return population;
     }
 

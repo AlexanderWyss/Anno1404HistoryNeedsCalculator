@@ -5,7 +5,6 @@ public class AnnoService: IAnnoService
     public Info GetInfo()
     {
         var population = PopulationReader.ReadPopulation("Anno1404Addon.exe");
-        var needs = NeedsCalculator.CalculateNeeds(population);
-        return new Info(population, needs);
+        return new Info(population, new Needs(population));
     }
 }

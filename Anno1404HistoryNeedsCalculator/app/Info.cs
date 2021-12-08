@@ -14,36 +14,106 @@ public class Info
 
 public class Population
 {
-    public double Beggars { get; set; }
-    public double Peasants { get; set; }
-    public double Citizens { get; set; }
-    public double Patricians { get; set; }
-    public double Noblemen { get; set; }
-    public double Nomads { get; set; }
-    public double Envoys { get; set; }
+    public double Beggars { get; init; }
+    public double Peasants { get; init; }
+    public double Citizens { get; init;}
+    public double Patricians { get; init;}
+    public double Noblemen { get; init;}
+    public double Nomads { get; init;}
+    public double Envoys { get; init;}
 }
 
 public class Needs
 {
-    public double Fish { get; set; }
-    public double Spices { get; set; }
-    public double Bread { get; set; }
-    public double Meat { get; set; }
-    public double Most { get; set; }
-    public double Beer { get; set; }
-    public double Wine { get; set; }
-    public double Garments { get; set; }
-    public double Jerkins { get; set; }
-    public double FurCoats { get; set; }
-    public double Robes { get; set; }
-    public double Books { get; set; }
-    public double CandleSticks { get; set; }
-    public double Glasses { get; set; }
-    public double Dates { get; set; }
-    public double Milk { get; set; }
-    public double Carpets { get; set; }
-    public double Coffee { get; set; }
-    public double PearlNecklaces { get; set; }
-    public double Perfume { get; set; }
-    public double Marzipan { get; set; }
+    private readonly Population _population;
+
+    public Needs(Population population)
+    {
+        _population = population;
+    }
+
+    public double Fish =>
+        _population.Beggars / 285 +
+        _population.Peasants / 200 +
+        _population.Citizens / 500 +
+        _population.Patricians / 909 +
+        _population.Noblemen / 1250;
+
+    public double Spices =>
+        _population.Citizens / 500 +
+        _population.Patricians / 909 +
+        _population.Noblemen / 1250;
+
+    public double Bread =>
+        _population.Patricians / 727 +
+        _population.Noblemen / 1025;
+
+    public double Meat =>
+        _population.Noblemen / 1136;
+
+    public double Most =>
+        _population.Beggars / 500 +
+        _population.Peasants / 340 +
+        _population.Citizens / 340 +
+        _population.Patricians / 652 +
+        _population.Noblemen / 1153;
+
+    public double Beer =>
+        (_population.Patricians > 510 ? (_population.Patricians / 625) : 0) +
+        _population.Noblemen / 1071;
+
+    public double Wine =>
+        (_population.Noblemen > 1500 ? (_population.Noblemen / 1000) : 0);
+
+    public double Garments =>
+        _population.Citizens / 476 +
+        _population.Patricians / 1052 +
+        _population.Noblemen / 2500;
+
+    public double Jerkins =>
+        (_population.Patricians > 690 ? (_population.Patricians / 1428) : 0) +
+        _population.Noblemen / 2500;
+
+    public double FurCoats =>
+        (_population.Noblemen > 950 ? (_population.Noblemen / 1562) : 0);
+
+    public double Robes =>
+        (_population.Noblemen > 4000 ? (_population.Noblemen / 2112) : 0);
+
+    public double Books =>
+        (_population.Patricians > 940 ? (_population.Patricians / 1875) : 0) +
+        _population.Noblemen / 3333;
+
+    public double CandleSticks =>
+        _population.Noblemen > 3000
+            ? _population.Patricians / 2500 +
+              _population.Noblemen / 3333
+            : 0;
+
+    public double Glasses =>
+        (_population.Noblemen > 2200 ? (_population.Noblemen / 1709) : 0);
+
+    public double Dates =>
+        _population.Nomads / 450 +
+        _population.Envoys / 600;
+
+    public double Milk =>
+        (_population.Nomads > 145 ? (_population.Nomads / 436) : 0) +
+        _population.Envoys / 666;
+
+    public double Carpets =>
+        (_population.Nomads > 295 ? (_population.Nomads / 909) : 0) +
+        _population.Envoys / 1500;
+
+    public double Coffee =>
+        _population.Envoys / 1000;
+
+    public double PearlNecklaces =>
+        (_population.Envoys > 1040 ? (_population.Envoys / 751) : 0);
+
+    public double Perfume =>
+        (_population.Envoys > 2600 ? (_population.Envoys / 1250) : 0);
+
+    public double Marzipan =>
+        (_population.Envoys > 4360 ? (_population.Envoys / 2453) : 0);
 }
