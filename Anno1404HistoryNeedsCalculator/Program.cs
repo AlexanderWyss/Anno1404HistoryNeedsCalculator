@@ -1,7 +1,9 @@
+using Anno1404HistoryNeedsCalculator.app;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddSingleton<IAnnoService, AnnoService>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
