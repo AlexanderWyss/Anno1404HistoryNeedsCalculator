@@ -24,7 +24,7 @@ public static class PopulationReader
             Peasants = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Peasants),
             Citizens = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Citizens),
             Patricians = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Patricians),
-            Noblemen = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Noblemens),
+            Noblemen = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Noblemen),
             Nomads = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Nomads),
             Envoys = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Envoys)
         };
@@ -38,7 +38,7 @@ public static class PopulationReader
         public const int Peasants = 0xEAE4;
         public const int Citizens = 0xEB04;
         public const int Patricians = 0xEB24;
-        public const int Noblemens = 0xEB44;
+        public const int Noblemen = 0xEB44;
         public const int Nomads = 0xEA84;
         public const int Envoys = 0xEAA4;
     }
