@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anno1404HistoryNeedsCalculator", "Anno1404HistoryNeedsCalculator\Anno1404HistoryNeedsCalculator.csproj", "{23E5C7DB-2577-474D-B397-AB9B1F9C3FC9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23E5C7DB-2577-474D-B397-AB9B1F9C3FC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23E5C7DB-2577-474D-B397-AB9B1F9C3FC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23E5C7DB-2577-474D-B397-AB9B1F9C3FC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23E5C7DB-2577-474D-B397-AB9B1F9C3FC9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
