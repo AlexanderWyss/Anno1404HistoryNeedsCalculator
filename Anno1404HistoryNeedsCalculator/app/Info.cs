@@ -43,7 +43,7 @@ public class Needs
     public double Milk { get; set; }
     public double Carpets { get; set; }
     public double Coffee { get; set; }
-    public double PearNecklaces { get; set; }
+    public double PearlNecklaces { get; set; }
     public double Perfume { get; set; }
     public double Marzipan { get; set; }
 }

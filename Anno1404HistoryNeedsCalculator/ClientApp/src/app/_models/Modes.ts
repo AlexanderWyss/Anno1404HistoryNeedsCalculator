@@ -32,7 +32,7 @@ export interface Needs {
   milk: number;
   carpets: number;
   coffee: number;
-  pearNecklaces: number;
+  pearlNecklaces: number;
   perfume: number;
   marzipan: number;
 }

@@ -91,7 +91,7 @@ public static class NeedsCalculator
             needs.Coffee =
                 (float)population.Envoys / 1000;
 
-            needs.PearNecklaces =
+            needs.PearlNecklaces =
                 (population.Envoys > 1040 ?
                     ((float)population.Envoys / 751) : 0);
 

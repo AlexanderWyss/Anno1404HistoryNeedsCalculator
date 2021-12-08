@@ -8,6 +8,7 @@ import {Info} from "../_models/Modes";
 })
 export class HomeComponent implements OnInit {
   info: Info | undefined;
+
   constructor(private annoService: AnnoService) {
   }
 
@@ -17,5 +18,13 @@ export class HomeComponent implements OnInit {
 
   refresh(): void {
     this.annoService.getInfo().subscribe(value => this.info = value);
+  }
+
+  iconPath(key: string): string {
+    return 'assets/icon' + this.upperCase(key) + '.png'
+  }
+
+  private upperCase(value: string): string {
+    return value.charAt(0).toUpperCase() + value.slice(1);
   }
 }
