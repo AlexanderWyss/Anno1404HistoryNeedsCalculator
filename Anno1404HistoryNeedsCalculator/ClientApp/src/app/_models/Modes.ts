@@ -3,7 +3,7 @@
   needs: Needs;
 }
 
-export interface Population {
+export interface Population extends ReadonlyMap<string, number> {
   beggars: number;
   peasants: number;
   citizens: number;
@@ -13,7 +13,7 @@ export interface Population {
   envoys: number;
 }
 
-export interface Needs {
+export interface Needs extends ReadonlyMap<string, number>{
   fish: number;
   spices: number;
   bread: number;

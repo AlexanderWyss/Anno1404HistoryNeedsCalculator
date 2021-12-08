@@ -3,14 +3,14 @@
   <div>
     <h3>Population</h3>
     <ul>
-      <li *ngFor="let item of info.population | keyvalue"><img [src]="iconPath(item.key)"
+      <li *ngFor="let item of info.population | keyvalue: noOrder"><img [src]="iconPath(item.key)"
                                                                [alt]="item.key"/>{{item.value | number: '0.0'}}</li>
     </ul>
   </div>
   <div>
     <h3>Needs</h3>
     <ul>
-      <li *ngFor="let item of info.needs | keyvalue"><img [src]="iconPath(item.key)"
+      <li *ngFor="let item of info.needs | keyvalue: noOrder"><img [src]="iconPath(item.key)"
                                                           [alt]="item.key"/>{{item.value| number: '0.2-2'}}</li>
     </ul>
   </div>
