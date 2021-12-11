@@ -1,0 +1,13 @@
+<span *ngIf="productionChain" class="production-chain-container">
+  <span class="inner-container">
+  <app-resource-img [resource]="productionChain.resource" [value]="productionChain.factor"
+                    [decimal]="true"></app-resource-img>
+    <span [class]="'inner-container ' + (input || productionChain.requires.length === 0 ? '' : 'brackets')">
+      <span *ngIf="productionChain.requires.length !== 0"> = </span>
+      <span *ngFor="let requirement of productionChain.requires; let i = index" class="inner-container">
+        <app-production-chain [productionChain]="requirement"></app-production-chain>
+        <span *ngIf="i < productionChain.requires.length-1">+</span>
+      </span>
+    </span>
+  </span>
+</span>

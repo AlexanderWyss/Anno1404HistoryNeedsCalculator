@@ -1,0 +1,21 @@
+.production-chain-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0.25em;
+
+  .inner-container {
+    display: flex;
+    flex-direction: row;
+    span {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.brackets {
+  border: 1px solid;
+  border-radius: 0.5em;
+}
+

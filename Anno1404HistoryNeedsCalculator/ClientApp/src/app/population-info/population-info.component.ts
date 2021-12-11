@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {KeyValue} from "@angular/common";
-import {Info} from "../_models/Modes";
+import {Info, ResourcesType} from "../_models/Modes";
+import {ProductionChainInput} from "../production-chain/production-chain.component";
 
 @Component({
   selector: 'app-population-info',
@@ -13,6 +14,7 @@ export class PopulationInfoComponent implements OnInit {
   noOrder = (a: KeyValue<string, number>, b: KeyValue<string, number>): number => {
     return 0;
   };
+  selectedProductionChain?: ProductionChainInput;
 
   constructor() {
   }
@@ -20,11 +22,14 @@ export class PopulationInfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  iconPath(key: string): string {
-    return 'assets/icon' + this.upperCase(key) + '.png'
-  }
-
-  private upperCase(value: string): string {
-    return value.charAt(0).toUpperCase() + value.slice(1);
+  setDisplayProductionChain(resource: string, factor: number) {
+    if (this.selectedProductionChain?.resource === resource && this.selectedProductionChain.factor === factor) {
+      this.selectedProductionChain = undefined;
+    } else {
+      this.selectedProductionChain = {
+        resource: resource as ResourcesType,
+        factor: factor
+      };
+    }
   }
 }

@@ -8,13 +8,17 @@ import {AppComponent} from './app.component';
 import {NavMenuComponent} from './nav-menu/nav-menu.component';
 import {HomeComponent} from './home/home.component';
 import {PopulationInfoComponent} from './population-info/population-info.component';
+import {ProductionChainComponent} from './production-chain/production-chain.component';
+import {ResourceImgComponent} from './resource-img/resource-img.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    PopulationInfoComponent
+    PopulationInfoComponent,
+    ProductionChainComponent,
+    ResourceImgComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -4,18 +4,19 @@
     <h3>Population</h3>
     <div class="info-container">
       <div *ngFor="let item of info.population | keyvalue: noOrder">
-        <img [src]="iconPath(item.key)" [alt]="item.key"/>
-        <span>{{item.value | number: '0.0'}}</span>
+        <app-resource-img [resource]="item.key" [value]="item.value" [decimal]="false"></app-resource-img>
       </div>
     </div>
   </div>
   <div>
     <h3>Needs</h3>
     <div class="info-container">
-      <div *ngFor="let item of info.needs | keyvalue: noOrder">
-        <img [src]="iconPath(item.key)" [alt]="item.key"/>
-        <span>{{item.value| number: '0.2-2'}}</span>
+      <div *ngFor="let item of info.needs | keyvalue: noOrder" (click)="setDisplayProductionChain(item.key, item.value)">
+        <app-resource-img [resource]="item.key" [value]="item.value" [decimal]="true"></app-resource-img>
       </div>
     </div>
+  </div>
+  <div *ngIf="selectedProductionChain">
+    <app-production-chain [input]="selectedProductionChain"></app-production-chain>
   </div>
 </div>

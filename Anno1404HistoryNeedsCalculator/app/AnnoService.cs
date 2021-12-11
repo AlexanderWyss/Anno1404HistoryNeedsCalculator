@@ -8,8 +8,8 @@ public class AnnoService : IAnnoService
     {
         var infos = new List<Info>();
         var populationReader = new PopulationReader(ProcessLoader.GetProcess());
-        CreateAndAddInfo(populationReader, "Global", Addresses.Global, infos);
         CreateAndAddInfo(populationReader, "Local", Addresses.Local, infos);
+        CreateAndAddInfo(populationReader, "Global", Addresses.Global, infos);
         return infos;
     }
 

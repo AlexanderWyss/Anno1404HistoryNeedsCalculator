@@ -1,0 +1,4 @@
+<div>
+  <img *ngIf="resource" [src]="iconPath(resource)" [alt]="resource"/>
+  <span>{{value| number: decimal ? '0.2-2' : '0.0'}}</span>
+</div>
