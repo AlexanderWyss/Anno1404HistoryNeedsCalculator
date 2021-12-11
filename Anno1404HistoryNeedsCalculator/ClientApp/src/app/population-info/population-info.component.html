@@ -1,6 +1,6 @@
 <div *ngIf="info" class="container">
   <h2>{{info.name}}</h2>
-  <div>
+  <div class="group">
     <h3>Population</h3>
     <div class="info-container">
       <div *ngFor="let item of info.population | keyvalue: noOrder">
@@ -8,7 +8,7 @@
       </div>
     </div>
   </div>
-  <div>
+  <div class="group">
     <h3>Needs</h3>
     <div class="info-container">
       <div *ngFor="let item of info.needs | keyvalue: noOrder" (click)="setDisplayProductionChain(item.key)">
@@ -16,9 +16,9 @@
       </div>
     </div>
   </div>
-  <div>
+  <div *ngIf="selectedProductionChain" class="group">
     <h4>Production Chain</h4>
-    <div *ngIf="selectedProductionChain" class="info-container">
+    <div class="info-container">
       <app-production-chain [input]="selectedProductionChain"></app-production-chain>
     </div>
   </div>
