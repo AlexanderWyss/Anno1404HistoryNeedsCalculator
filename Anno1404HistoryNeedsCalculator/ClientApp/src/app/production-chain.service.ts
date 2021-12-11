@@ -65,7 +65,7 @@ export class ProductionChainService {
     },
     wine: {
       factory: 'Wine Press',
-      requires: [{resource: 'grapes', factor: 0.333333333}, {resource: 'barrels', factor: 1}],
+      requires: [{resource: 'grapes', factor: 3}, {resource: 'barrels', factor: 1}],
       niceFactor: 2
     },
     grapes: {
