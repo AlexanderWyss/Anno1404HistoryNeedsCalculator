@@ -32,7 +32,7 @@ export class ProductionChainComponent implements OnInit, OnChanges {
 
   private loadChain() {
     if (this.input) {
-      this.productionChain = this.productionChainService.getProductionChain(this.input.resource, this.input.factor);
+      this.productionChain = this.productionChainService.getProductionChain(this.input.resource, Math.ceil(this.input.factor));
     }
   }
 }
