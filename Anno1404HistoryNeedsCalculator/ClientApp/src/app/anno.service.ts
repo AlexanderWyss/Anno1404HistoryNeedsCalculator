@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, OperatorFunction} from "rxjs";
-import {Info} from "./_models/Modes";
+import {Info, ResourcesType} from "./_models/Modes";
 import {catchError} from "rxjs/operators";
 import {Router} from "@angular/router";
 
@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 })
 export class AnnoService {
   private baseUrl: string;
+  private selectedProductionChains: Record<string, ResourcesType|undefined> = {};
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, private router: Router) {
     this.baseUrl = baseUrl + 'api/';
@@ -35,5 +36,18 @@ export class AnnoService {
         throw err;
       }
     );
+  }
+
+  getSelectedProductionChain(name?: string): ResourcesType|undefined {
+    if(name) {
+      return this.selectedProductionChains[name];
+    }
+    return undefined;
+  }
+
+  setSelectedProductionChain(name?: string, selectedProductionChain?: ResourcesType) {
+    if (name) {
+      this.selectedProductionChains[name] = selectedProductionChain;
+    }
   }
 }

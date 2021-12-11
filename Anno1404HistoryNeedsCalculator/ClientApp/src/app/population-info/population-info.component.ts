@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {KeyValue} from "@angular/common";
-import {Info, ResourcesType} from "../_models/Modes";
+import {Info, NeedsType, ResourcesType} from "../_models/Modes";
 import {ProductionChainInput} from "../production-chain/production-chain.component";
+import {AnnoService} from "../anno.service";
 
 @Component({
   selector: 'app-population-info',
@@ -16,20 +17,22 @@ export class PopulationInfoComponent implements OnInit {
   };
   selectedProductionChain?: ProductionChainInput;
 
-  constructor() {
+  constructor(private annoService: AnnoService) {
   }
 
   ngOnInit(): void {
+    this.setDisplayProductionChain(this.annoService.getSelectedProductionChain(this.info?.name));
   }
 
-  setDisplayProductionChain(resource: string, factor: number) {
-    if (this.selectedProductionChain?.resource === resource && this.selectedProductionChain.factor === factor) {
+  setDisplayProductionChain(resource?: string) {
+    if (this.selectedProductionChain?.resource === resource) {
       this.selectedProductionChain = undefined;
     } else {
       this.selectedProductionChain = {
         resource: resource as ResourcesType,
-        factor: factor
+        factor: this.info ? this.info.needs[resource as NeedsType]: 0
       };
     }
+    this.annoService.setSelectedProductionChain(this.info?.name, this.selectedProductionChain?.resource);
   }
 }

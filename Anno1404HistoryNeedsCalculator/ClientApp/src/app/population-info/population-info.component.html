@@ -11,7 +11,7 @@
   <div>
     <h3>Needs</h3>
     <div class="info-container">
-      <div *ngFor="let item of info.needs | keyvalue: noOrder" (click)="setDisplayProductionChain(item.key, item.value)">
+      <div *ngFor="let item of info.needs | keyvalue: noOrder" (click)="setDisplayProductionChain(item.key)">
         <app-resource-img [resource]="item.key" [value]="item.value" [decimal]="true"></app-resource-img>
       </div>
     </div>
