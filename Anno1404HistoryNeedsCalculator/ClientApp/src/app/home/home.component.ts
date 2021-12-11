@@ -17,11 +17,20 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.refresh();
-    this.interval = setInterval(() => this.refresh(), 10000);
+    this.startAutoRefresh();
   }
 
   ngOnDestroy(): void {
+    this.stopAutoRefresh();
+  }
+
+  private startAutoRefresh() {
+    this.interval = setInterval(() => this.refresh(), 10000);
+  }
+
+  private stopAutoRefresh() {
     clearInterval(this.interval);
+    this.interval = undefined;
   }
 
   refresh(): void {
@@ -29,5 +38,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.infos = value;
       this.updateDate = new Date();
     });
+  }
+
+  toggleAutoRefresh() {
+    if (this.interval) {
+      this.stopAutoRefresh();
+    } else {
+      this.startAutoRefresh();
+    }
   }
 }
