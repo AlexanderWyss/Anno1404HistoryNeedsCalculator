@@ -1,4 +1,4 @@
-<div *ngIf="info">
+<div *ngIf="info" class="container">
   <h2>{{info.name}}</h2>
   <div>
     <h3>Population</h3>
@@ -16,7 +16,10 @@
       </div>
     </div>
   </div>
-  <div *ngIf="selectedProductionChain">
-    <app-production-chain [input]="selectedProductionChain"></app-production-chain>
+  <div>
+    <h4>Production Chain</h4>
+    <div *ngIf="selectedProductionChain" class="info-container">
+      <app-production-chain [input]="selectedProductionChain"></app-production-chain>
+    </div>
   </div>
 </div>
