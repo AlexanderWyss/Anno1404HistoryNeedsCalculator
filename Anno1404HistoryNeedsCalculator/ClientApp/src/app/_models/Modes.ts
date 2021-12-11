@@ -37,3 +37,44 @@ export type NeedsType = 'fish' |
 export type Population = Record<PopulationType, number>;
 
 export type Needs = Record<NeedsType, number>;
+
+export type ResourcesType = NeedsType |
+  'flour' |
+  'wheat' |
+  'cattle' |
+  'salt' |
+  'coal' |
+  'brine' |
+  'herbs' |
+  'grapes' |
+  'barrels' |
+  'wood' |
+  'iron' |
+  'ironOre' |
+  'hemp' |
+  'animalHides' |
+  'fur' |
+  'silk' |
+  'gold' |
+  'goldOre' |
+  'indigo' |
+  'paper' |
+  'brass' |
+  'copper' |
+  'candles' |
+  'beeswax' |
+  'quartz' |
+  'coffeeBeans' |
+  'pearls' |
+  'roseOil' |
+  'almonds' |
+  'sugar' |
+  'sugarCane'
+  ;
+
+export interface ProductionChainDto {
+  resource: ResourcesType;
+  factor: number;
+  requires: ProductionChainDto[];
+  factory: string;
+}
