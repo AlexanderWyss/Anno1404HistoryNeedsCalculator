@@ -20,7 +20,7 @@ export class ResourceImgComponent implements OnInit {
   }
 
   iconPath(key: string): string {
-    return 'assets/icon' + this.upperCase(key) + '.png'
+    return 'assets/icons/icon' + this.upperCase(key) + '.png'
   }
 
   private upperCase(value: string): string {
