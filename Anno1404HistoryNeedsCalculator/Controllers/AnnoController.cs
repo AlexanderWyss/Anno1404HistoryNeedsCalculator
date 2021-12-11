@@ -7,7 +7,6 @@ namespace Anno1404HistoryNeedsCalculator.Controllers;
 [Route("api")]
 public class AnnoController : ControllerBase
 {
-
     private readonly ILogger<AnnoController> _logger;
     private readonly IAnnoService _service;
 
@@ -18,7 +17,7 @@ public class AnnoController : ControllerBase
     }
 
     [HttpGet("info")]
-    public Info[] GetInfo()
+    public List<Info> GetInfo()
     {
         return _service.GetInfo();
     }

@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
+using Anno1404HistoryNeedsCalculator.app.exceptions;
 
 namespace Anno1404HistoryNeedsCalculator.app;
 
@@ -26,9 +27,9 @@ public class MemoryReader
         var res = ReadProcessMemory(_process.Handle.ToInt32(), address, buffer, 4, ref bytesRead);
         if (!res)
         {
-            Console.WriteLine("Read Error int" + GetLastError());
-            return 0;
+            throw new MemoryReadException(MemoryReadExceptionType.Int, address, GetLastError());
         }
+
         return BitConverter.ToInt32(buffer, 0);
     }
 
@@ -39,9 +40,9 @@ public class MemoryReader
         var res = ReadProcessMemory(_process.Handle.ToInt32(), address, buffer, 8, ref bytesRead);
         if (!res)
         {
-            Console.WriteLine("Read Error long" + GetLastError());
-            return 0;
+            throw new MemoryReadException(MemoryReadExceptionType.Long, address, GetLastError());
         }
+
         return BitConverter.ToInt64(buffer, 0);
     }
 }
