@@ -4,6 +4,7 @@ import {ProductionChainDto, ResourcesType} from "./_models/Modes";
 interface ProductionChain {
   requires?: ProductionChainElement[];
   factory: string;
+  niceFactor?: number;
 }
 
 interface ProductionChainElement {
@@ -36,7 +37,8 @@ export class ProductionChainService {
     },
     meat: {
       factory: 'Butcher\'s Shop',
-      requires: [{resource: 'cattle', factor: 2}, {resource: 'salt', factor: 0.5}]
+      requires: [{resource: 'cattle', factor: 2}, {resource: 'salt', factor: 0.5}],
+      niceFactor: 2
     },
     cattle: {
       factory: 'Cattle Farm',
@@ -63,7 +65,8 @@ export class ProductionChainService {
     },
     wine: {
       factory: 'Wine Press',
-      requires: [{resource: 'grapes', factor: 0.333333333}, {resource: 'barrels', factor: 1}]
+      requires: [{resource: 'grapes', factor: 0.333333333}, {resource: 'barrels', factor: 1}],
+      niceFactor: 2
     },
     grapes: {
       factory: 'Vineyard'
@@ -91,14 +94,16 @@ export class ProductionChainService {
     },
     jerkins: {
       factory: 'Tannery',
-      requires: [{resource: 'salt', factor: 0.5}, {resource: 'animalHides', factor: 2}]
+      requires: [{resource: 'salt', factor: 0.5}, {resource: 'animalHides', factor: 2}],
+      niceFactor: 2
     },
     animalHides: {
       factory: 'Pig Farm'
     },
     furCoats: {
       factory: 'Furrier\'s Workshop',
-      requires: [{resource: 'fur', factor: 1}, {resource: 'salt', factor: 0.333333333}]
+      requires: [{resource: 'fur', factor: 1}, {resource: 'salt', factor: 0.333333333}],
+      niceFactor: 3
     },
     fur: {
       factory: 'Trapper\'s Lodge'
@@ -119,7 +124,8 @@ export class ProductionChainService {
     },
     books: {
       factory: 'Printing House',
-      requires: [{resource: 'indigo', factor: 2}, {resource: 'paper', factor: 0.5}]
+      requires: [{resource: 'indigo', factor: 2}, {resource: 'paper', factor: 0.5}],
+      niceFactor: 2
     },
     indigo: {
       factory: 'Indigo Farm'
@@ -130,7 +136,8 @@ export class ProductionChainService {
     },
     candleSticks: {
       factory: 'Redsmith\'s Workshop',
-      requires: [{resource: 'brass', factor: 0.75}, {resource: 'candles', factor: 1.5}]
+      requires: [{resource: 'brass', factor: 0.75}, {resource: 'candles', factor: 1.5}],
+      niceFactor: 4
     },
     brass: {
       factory: 'Copper Smelter',
@@ -148,7 +155,8 @@ export class ProductionChainService {
     },
     glasses: {
       factory: 'Optican\'s Workshop',
-      requires: [{resource: 'brass', factor: 0.75}, {resource: 'quartz', factor: 0.75}]
+      requires: [{resource: 'brass', factor: 0.75}, {resource: 'quartz', factor: 0.75}],
+      niceFactor: 4
     },
     quartz: {
       factory: 'Quartz Quarry'
@@ -204,18 +212,23 @@ export class ProductionChainService {
   }
 
 
-  public getProductionChain(type: ResourcesType, factor: number = 1): ProductionChainDto {
+  public getProductionChain(type: ResourcesType, factor: number = 1, niceFactor: number = NaN, singleFactor: number = 1): ProductionChainDto {
     const productionChain = this.productionChains[type];
+    if (!niceFactor && productionChain.niceFactor) {
+      niceFactor = Math.ceil(factor / productionChain.niceFactor) * productionChain.niceFactor;
+    }
     const requires: ProductionChainDto[] = [];
     if (productionChain.requires) {
       for (const requiresElement of productionChain.requires) {
-        requires.push(this.getProductionChain(requiresElement.resource, requiresElement.factor * factor))
+        requires.push(this.getProductionChain(requiresElement.resource, requiresElement.factor * factor, requiresElement.factor * niceFactor, requiresElement.factor * singleFactor))
       }
     }
     return {
       resource: type,
       factory: productionChain.factory,
       factor: factor,
+      niceFactor: niceFactor,
+      singleFactor: singleFactor,
       requires: requires
     };
   }

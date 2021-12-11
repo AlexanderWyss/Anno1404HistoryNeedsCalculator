@@ -75,6 +75,8 @@ export type ResourcesType = NeedsType |
 export interface ProductionChainDto {
   resource: ResourcesType;
   factor: number;
+  niceFactor: number;
+  singleFactor: number;
   requires: ProductionChainDto[];
   factory: string;
 }

@@ -11,6 +11,8 @@ export class ResourceImgComponent implements OnInit {
   @Input()
   value?: number;
   @Input()
+  additionalValues: number[] = [];
+  @Input()
   decimal?: boolean;
 
   constructor() {
