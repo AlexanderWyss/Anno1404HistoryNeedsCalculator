@@ -212,10 +212,10 @@ export class ProductionChainService {
   }
 
 
-  public getProductionChain(type: ResourcesType, factor: number = 1, niceFactor: number = NaN, singleFactor: number = 1): ProductionChainDto {
+  public getProductionChain(type: ResourcesType, factor: number, niceFactor: number = NaN, singleFactor: number = 1): ProductionChainDto {
     const productionChain = this.productionChains[type];
     if (!niceFactor && productionChain.niceFactor) {
-      niceFactor = Math.ceil(factor / productionChain.niceFactor) * productionChain.niceFactor;
+      niceFactor = Math.ceil(factor / productionChain.niceFactor) * productionChain.niceFactor; // next factor divisible by niceFactor
     }
     const requires: ProductionChainDto[] = [];
     if (productionChain.requires) {
