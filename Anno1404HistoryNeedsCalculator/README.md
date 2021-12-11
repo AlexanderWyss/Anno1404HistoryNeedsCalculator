@@ -1,3 +1,5 @@
 ﻿# TODO
-* Bevölkerung & produktion pro insel
-* Produktionsketten & Layout
+* insel speichern wenn einmal endeckt
+* Layout
+* alternative Produktionsketten (eg coal)
+* expand collapse sub produktionsketten
