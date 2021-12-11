@@ -23,7 +23,6 @@ export class ProductionChainComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.loadChain();
-    console.log()
   }
 
   ngOnChanges(changes: SimpleChanges): void {
