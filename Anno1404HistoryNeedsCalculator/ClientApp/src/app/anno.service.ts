@@ -15,8 +15,8 @@ export class AnnoService {
     this.baseUrl = baseUrl + 'api/';
   }
 
-  public getInfo(): Observable<Info> {
-    return this.http.get<Info>(this.baseUrl + 'info').pipe(this.handleError());
+  public getInfo(): Observable<Info[]> {
+    return this.http.get<Info[]>(this.baseUrl + 'info').pipe(this.handleError());
   }
 
   private handleError<T>(): OperatorFunction<T, T> {

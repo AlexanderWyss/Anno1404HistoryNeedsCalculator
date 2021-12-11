@@ -1,4 +1,5 @@
 ﻿export interface Info {
+  name: string;
   population: Population;
   needs: Needs;
 }

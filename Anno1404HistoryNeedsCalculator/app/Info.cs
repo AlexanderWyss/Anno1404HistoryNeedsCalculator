@@ -2,12 +2,14 @@ namespace Anno1404HistoryNeedsCalculator.app;
 
 public class Info
 {
-    public Info(Population population, Needs needs)
+    public Info(string name, Population population, Needs needs)
     {
+        Name = name;
         Population = population;
         Needs = needs;
     }
 
+    public string Name { get; }
     public Population Population { get; }
     public Needs Needs { get; }
 }

@@ -2,44 +2,37 @@
 
 namespace Anno1404HistoryNeedsCalculator.app;
 
-public static class PopulationReader
+public class PopulationReader
 {
-    public static Population ReadPopulation(string processName)
+    private readonly MemoryReader _memoryReader;
+    private readonly Process _process;
+
+    public PopulationReader(Process process)
     {
-        if (processName.EndsWith(".exe"))
+        _process = process;
+        _memoryReader = new MemoryReader(process);
+    }
+
+    public Population ReadPopulation(Addresses addresses)
+    {
+        var baseAddress = addresses.Pointer.Base == 0
+            ? _process.MainModule.BaseAddress.ToInt64()
+            : _memoryReader.ReadAddressLong(addresses.Pointer.Base);
+        foreach (var offset in addresses.Pointer.Offsets)
         {
-            processName = processName.Remove(processName.Length - 4);
+            baseAddress = _memoryReader.ReadAddressLong(baseAddress + offset);
         }
-
-        var processes = Process.GetProcessesByName(processName);
-        if (processes.Length == 0)
-            throw new Exception($"Could not find process with name: {processName}");
-        var process = processes[0];
-
-        var baseAddress = MemoryReader.ReadAddressLong(process, Addresses.PopulationPointer);
 
         var population = new Population()
         {
-            Beggars = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Beggars),
-            Peasants = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Peasants),
-            Citizens = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Citizens),
-            Patricians = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Patricians),
-            Noblemen = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Noblemen),
-            Nomads = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Nomads),
-            Envoys = MemoryReader.ReadAddressInt(process, baseAddress + Addresses.Envoys)
+            Beggars = _memoryReader.ReadAddressInt(baseAddress + addresses.Beggars),
+            Peasants = _memoryReader.ReadAddressInt(baseAddress + addresses.Peasants),
+            Citizens = _memoryReader.ReadAddressInt(baseAddress + addresses.Citizens),
+            Patricians = _memoryReader.ReadAddressInt(baseAddress + addresses.Patricians),
+            Noblemen = _memoryReader.ReadAddressInt(baseAddress + addresses.Noblemen),
+            Nomads = _memoryReader.ReadAddressInt(baseAddress + addresses.Nomads),
+            Envoys = _memoryReader.ReadAddressInt(baseAddress + addresses.Envoys)
         };
         return population;
-    }
-
-    private static class Addresses
-    {
-        public const long PopulationPointer = 0x7FF7A29B7040; //0x7FF7A29B7068 //0x2097040 // 2097068
-        public const int Beggars = 0xEA44;
-        public const int Peasants = 0xEAE4;
-        public const int Citizens = 0xEB04;
-        public const int Patricians = 0xEB24;
-        public const int Noblemen = 0xEB44;
-        public const int Nomads = 0xEA84;
-        public const int Envoys = 0xEAA4;
     }
 }

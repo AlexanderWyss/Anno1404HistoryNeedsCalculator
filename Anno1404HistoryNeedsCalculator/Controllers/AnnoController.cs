@@ -18,7 +18,7 @@ public class AnnoController : ControllerBase
     }
 
     [HttpGet("info")]
-    public Info GetInfo()
+    public Info[] GetInfo()
     {
         return _service.GetInfo();
     }

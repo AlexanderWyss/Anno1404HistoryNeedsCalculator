@@ -2,23 +2,6 @@
   <input type="button" (click)="refresh()" value="Refresh"/>
   <small *ngIf="updateDate">{{updateDate | date: 'HH:mm'}}</small>
 </div>
-<div *ngIf="info">
-  <div>
-    <h3>Population</h3>
-    <div class="info-container">
-      <div *ngFor="let item of info.population | keyvalue: noOrder">
-        <img [src]="iconPath(item.key)" [alt]="item.key"/>
-        <span>{{item.value | number: '0.0'}}</span>
-      </div>
-    </div>
-  </div>
-  <div>
-    <h3>Needs</h3>
-    <div class="info-container">
-      <div *ngFor="let item of info.needs | keyvalue: noOrder">
-        <img [src]="iconPath(item.key)" [alt]="item.key"/>
-        <span>{{item.value| number: '0.2-2'}}</span>
-      </div>
-    </div>
-  </div>
+<div *ngIf="infos">
+  <app-population-info *ngFor="let info of infos" [info]="info"></app-population-info>
 </div>

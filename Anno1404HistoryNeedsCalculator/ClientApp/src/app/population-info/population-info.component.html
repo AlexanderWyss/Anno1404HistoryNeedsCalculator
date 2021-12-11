@@ -1,0 +1,21 @@
+<div *ngIf="info">
+  <h2>{{info.name}}</h2>
+  <div>
+    <h3>Population</h3>
+    <div class="info-container">
+      <div *ngFor="let item of info.population | keyvalue: noOrder">
+        <img [src]="iconPath(item.key)" [alt]="item.key"/>
+        <span>{{item.value | number: '0.0'}}</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h3>Needs</h3>
+    <div class="info-container">
+      <div *ngFor="let item of info.needs | keyvalue: noOrder">
+        <img [src]="iconPath(item.key)" [alt]="item.key"/>
+        <span>{{item.value| number: '0.2-2'}}</span>
+      </div>
+    </div>
+  </div>
+</div>
