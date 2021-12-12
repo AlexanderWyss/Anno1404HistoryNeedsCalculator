@@ -10,6 +10,7 @@ import {HomeComponent} from './home/home.component';
 import {PopulationInfoComponent} from './population-info/population-info.component';
 import {ProductionChainComponent} from './production-chain/production-chain.component';
 import {ResourceImgComponent} from './resource-img/resource-img.component';
+import {LayoutComponent} from './layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {ResourceImgComponent} from './resource-img/resource-img.component';
     HomeComponent,
     PopulationInfoComponent,
     ProductionChainComponent,
-    ResourceImgComponent
+    ResourceImgComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

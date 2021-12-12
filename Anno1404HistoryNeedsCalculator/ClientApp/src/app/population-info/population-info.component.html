@@ -18,8 +18,9 @@
   </div>
   <div *ngIf="selectedProductionChain" class="group">
     <h4>Production Chain</h4>
-    <div class="info-container">
+    <div>
       <app-production-chain [input]="selectedProductionChain"></app-production-chain>
+      <app-layout [resource]="selectedProductionChain.resource"></app-layout>
     </div>
   </div>
 </div>
