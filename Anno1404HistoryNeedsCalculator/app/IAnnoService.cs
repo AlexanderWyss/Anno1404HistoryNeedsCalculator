@@ -4,4 +4,5 @@ public interface IAnnoService
 {
     public Info GetInfo();
     public void Register();
+    void Update(SavedIsland savedIsland);
 }

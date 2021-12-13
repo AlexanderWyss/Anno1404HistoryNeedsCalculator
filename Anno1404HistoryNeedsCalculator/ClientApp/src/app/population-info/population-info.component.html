@@ -11,10 +11,14 @@
   <div class="group">
     <h3>Needs</h3>
     <div class="info-container">
-      <div *ngFor="let item of info.needs | keyvalue: noOrder" (click)="setDisplayProductionChain(item.key)"
+      <div *ngFor="let item of info.needs | keyvalue: noOrder"
            [class]="getNeedsClass(item.key, item.value)">
         <app-resource-img [resource]="item.key" [value]="item.value" [decimal]="true"
-                          [additionalValues]="[getBuiltNeedsBuildings(item.key)]"></app-resource-img>
+                          [additionalValues]="[getBuiltNeedsBuildings(item.key)]" (click)="setDisplayProductionChain(item.key)"></app-resource-img>
+        <div *ngIf="info.savedIsland" class="manage-buildings">
+          <input type="button" value="-" (click)="change(item.key, -1)"/>
+          <input type="button" value="+" (click)="change(item.key, +1)"/>
+        </div>
       </div>
     </div>
   </div>

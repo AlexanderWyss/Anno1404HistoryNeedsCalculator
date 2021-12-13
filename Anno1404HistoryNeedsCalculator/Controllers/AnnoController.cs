@@ -21,9 +21,16 @@ public class AnnoController : ControllerBase
     {
         return _service.GetInfo();
     }
+    
     [HttpGet("register")]
     public void Register()
     {
         _service.Register();
+    }
+    
+    [HttpPost("update")]
+    public void Update(SavedIsland savedIsland)
+    {
+        _service.Update(savedIsland);
     }
 }

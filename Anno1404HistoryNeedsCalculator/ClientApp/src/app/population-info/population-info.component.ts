@@ -52,4 +52,11 @@ export class PopulationInfoComponent implements OnInit {
     }
     return '';
   }
+
+  change(key: string, diff: number) {
+    if (this.info?.savedIsland) {
+      this.info.savedIsland[key as NeedsType] += diff;
+      this.annoService.updateBuildings(this.info.savedIsland).subscribe();
+    }
+  }
 }

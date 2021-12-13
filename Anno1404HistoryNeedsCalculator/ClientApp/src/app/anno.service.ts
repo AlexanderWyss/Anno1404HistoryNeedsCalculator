@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, OperatorFunction} from "rxjs";
-import {Info, ResourcesType} from "./_models/Modes";
+import {Info, ResourcesType, SavedIsland} from "./_models/Modes";
 import {catchError} from "rxjs/operators";
 import {Router} from "@angular/router";
 
@@ -22,6 +22,10 @@ export class AnnoService {
 
   public register(): Observable<void> {
     return this.http.get<void>(this.baseUrl + 'register').pipe(this.handleError());
+  }
+
+  public updateBuildings(savedIsland: SavedIsland): Observable<void> {
+    return this.http.post<void>(this.baseUrl + 'update', savedIsland).pipe(this.handleError());
   }
 
   private handleError<T>(): OperatorFunction<T, T> {

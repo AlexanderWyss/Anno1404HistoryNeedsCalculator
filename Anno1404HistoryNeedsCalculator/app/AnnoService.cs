@@ -86,9 +86,25 @@ public class AnnoService : IAnnoService
         }
     }
 
+
+    private const string Path = "C:\\Users\\alexs\\development\\Anno1404HistoryNeedsCalculator\\Anno1404HistoryNeedsCalculator\\Data\\islands.json";
+
+    public void Update(SavedIsland savedIsland)
+    {
+        var savedIslands = LoadSavedIslands();
+        if (savedIslands!= null)
+        {
+            var index = savedIslands.Islands.FindIndex(island => island.Id == savedIsland.Id);
+            if (index != -1)
+            {
+                savedIslands.Islands[index] = savedIsland;
+                File.WriteAllText(Path, JsonSerializer.Serialize(savedIslands));
+            }
+        }
+    }
     private SavedIslands? LoadSavedIslands()
     {
         return JsonSerializer.Deserialize<SavedIslands>(File.ReadAllText(
-            "C:\\Users\\alexs\\development\\Anno1404HistoryNeedsCalculator\\Anno1404HistoryNeedsCalculator\\Data\\islands.json"));
+            Path));
     }
 }

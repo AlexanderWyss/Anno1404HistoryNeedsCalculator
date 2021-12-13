@@ -9,6 +9,7 @@
 .group {
   box-shadow: 0.05em 0.05em 0.1em gray;
   margin: 0.5em 0;
+  padding-bottom: 0.5em;
 }
 
 .warn {
@@ -18,4 +19,15 @@
 .error {
   background-color: red;
   color: white;
+}
+
+.manage-buildings {
+  display: flex;
+  justify-content: space-evenly;
+  input {
+    padding: 0;
+    width: 1em;
+    height: 1em;
+    line-height: 0.5em;
+  }
 }
