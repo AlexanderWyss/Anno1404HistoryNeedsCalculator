@@ -31,7 +31,7 @@ export class LayoutComponent implements OnInit, OnChanges {
     perfume: [],
     robes: [],
     spices: ['spice'],
-    wine: []
+    wine: ['wine']
   };
 
   constructor() {
