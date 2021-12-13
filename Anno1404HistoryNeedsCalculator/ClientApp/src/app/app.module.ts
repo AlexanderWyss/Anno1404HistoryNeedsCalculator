@@ -11,6 +11,7 @@ import {PopulationInfoComponent} from './population-info/population-info.compone
 import {ProductionChainComponent} from './production-chain/production-chain.component';
 import {ResourceImgComponent} from './resource-img/resource-img.component';
 import {LayoutComponent} from './layout/layout.component';
+import {ProductionChainsOverviewComponent} from './production-chains-overview/production-chains-overview.component';
 
 @NgModule({
   declarations: [
@@ -20,14 +21,16 @@ import {LayoutComponent} from './layout/layout.component';
     PopulationInfoComponent,
     ProductionChainComponent,
     ResourceImgComponent,
-    LayoutComponent
+    LayoutComponent,
+    ProductionChainsOverviewComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' }
+      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'production-chain', component: ProductionChainsOverviewComponent, pathMatch: 'full' },
     ])
   ],
   providers: [],

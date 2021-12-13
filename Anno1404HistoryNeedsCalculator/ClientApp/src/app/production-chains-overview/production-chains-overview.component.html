@@ -1,0 +1,4 @@
+<div *ngFor="let resource of resources">
+  {{resource}}
+  <app-production-chain [input]="{resource: resource, factor: 1}"></app-production-chain>
+</div>

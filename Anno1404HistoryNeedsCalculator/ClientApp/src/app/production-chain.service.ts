@@ -205,6 +205,45 @@ export class ProductionChainService {
     },
     sugarCane: {
       factory: 'Sugar Cane Plantation'
+    },
+    ropes: {
+      factory: 'Ropeyard',
+      requires: [{resource: 'hemp', factor: 1}]
+    },
+    tools: {
+      factory: 'Toolmaker\'s Workshop',
+      requires: [{resource: 'iron', factor: 0.5}],
+      niceFactor: 2
+    },
+    mosaic: {
+      factory: 'Mosaic Workshop',
+      requires: [{resource: 'quartz', factor: 1}, {resource: 'clay', factor: 2}]
+    },
+    clay: {
+      factory: 'Clay Pit',
+    },
+    glass: {
+      factory: 'Glass Smelter',
+      requires: [{resource: 'quartz', factor: 0.375}, {resource: 'potash', factor: 0.5}],
+      niceFactor: 2
+    },
+    potash: {
+      factory: 'Forest Glassworks'
+    },
+    stone: {
+      factory: 'Stonemason\'s Hut'
+    },
+    weapons: {
+      factory: 'Weapon Smith',
+      requires: [{resource: 'iron', factor: 1}]
+    },
+    cannons: {
+      factory: 'Cannon Foundry',
+      requires: [{resource: 'iron', factor: 0.75}, {resource: 'wood', factor: 1}]
+    },
+    warMachines: {
+      factory: 'War Machines Workshop',
+      requires: [{resource: 'ropes', factor: 2}, {resource: 'wood', factor: 2}]
     }
   };
 
@@ -231,5 +270,9 @@ export class ProductionChainService {
       singleFactor: singleFactor,
       requires: requires
     };
+  }
+
+  public getResourcesWithRequirements(): ResourcesType[] {
+    return Object.entries(this.productionChains).filter(([, value]) => value.requires).map(([key,]) => key as ResourcesType);
   }
 }

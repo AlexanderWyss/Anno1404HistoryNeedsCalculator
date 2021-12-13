@@ -34,4 +34,15 @@ export class ProductionChainComponent implements OnInit, OnChanges {
       this.productionChain = this.productionChainService.getProductionChain(this.input.resource, Math.ceil(this.input.factor));
     }
   }
+
+  getAdditionalValues(productionChain: ProductionChainDto) {
+    const addValues = [];
+    if (productionChain.factor !== productionChain.singleFactor) {
+      addValues.push(productionChain.singleFactor);
+    }
+    if (productionChain.factor !== productionChain.niceFactor) {
+      addValues.push(productionChain.niceFactor);
+    }
+    return addValues;
+  }
 }
