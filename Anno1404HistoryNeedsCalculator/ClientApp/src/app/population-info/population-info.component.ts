@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {KeyValue} from "@angular/common";
-import {Info, NeedsType, ResourcesType} from "../_models/Modes";
+import {IslandInfo, NeedsType, ResourcesType} from "../_models/Modes";
 import {ProductionChainInput} from "../production-chain/production-chain.component";
 import {AnnoService} from "../anno.service";
 
@@ -11,7 +11,7 @@ import {AnnoService} from "../anno.service";
 })
 export class PopulationInfoComponent implements OnInit {
   @Input()
-  info?: Info;
+  info?: IslandInfo;
   noOrder = (a: KeyValue<string, number>, b: KeyValue<string, number>): number => {
     return 0;
   };
@@ -21,7 +21,7 @@ export class PopulationInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setDisplayProductionChain(this.annoService.getSelectedProductionChain(this.info?.name));
+    this.setDisplayProductionChain(this.annoService.getSelectedProductionChain(this.info?.id));
   }
 
   setDisplayProductionChain(resource?: string) {
@@ -33,6 +33,6 @@ export class PopulationInfoComponent implements OnInit {
         factor: this.info ? this.info.needs[resource as NeedsType]: 0
       };
     }
-    this.annoService.setSelectedProductionChain(this.info?.name, this.selectedProductionChain?.resource);
+    this.annoService.setSelectedProductionChain(this.info?.id, this.selectedProductionChain?.resource);
   }
 }

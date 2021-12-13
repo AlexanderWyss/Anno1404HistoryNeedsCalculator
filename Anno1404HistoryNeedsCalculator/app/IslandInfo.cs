@@ -2,14 +2,26 @@ namespace Anno1404HistoryNeedsCalculator.app;
 
 public class Info
 {
-    public Info(string name, Population population, Needs needs)
+    public Info(string? localId, List<IslandInfo> islands)
     {
-        Name = name;
+        LocalId = localId;
+        Islands = islands;
+    }
+
+    public string? LocalId { get; }
+    public List<IslandInfo> Islands { get; }
+}
+
+public class IslandInfo
+{
+    public IslandInfo(string id, Population population, Needs needs)
+    {
+        Id = id;
         Population = population;
         Needs = needs;
     }
 
-    public string Name { get; }
+    public string Id { get; }
     public Population Population { get; }
     public Needs Needs { get; }
 }
@@ -18,11 +30,11 @@ public class Population
 {
     public double Beggars { get; init; }
     public double Peasants { get; init; }
-    public double Citizens { get; init;}
-    public double Patricians { get; init;}
-    public double Noblemen { get; init;}
-    public double Nomads { get; init;}
-    public double Envoys { get; init;}
+    public double Citizens { get; init; }
+    public double Patricians { get; init; }
+    public double Noblemen { get; init; }
+    public double Nomads { get; init; }
+    public double Envoys { get; init; }
 }
 
 public class Needs

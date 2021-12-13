@@ -2,7 +2,7 @@
 
 public class Addresses
 {
-    public static readonly Addresses Global = new(new Pointer(0x7FF7A29B7040))
+    public static readonly Addresses Global = new(new Pointer(0x7FF7A29B7040, false))
     {
         Beggars = 0xEA44,
         Peasants = 0xEAE4,
@@ -13,16 +13,21 @@ public class Addresses
         Envoys = 0xEAA4
     };
 
-    public static readonly Addresses Local = new(new Pointer(new[] { 0x020A7CB0, 0x1F8, 0x170 }))
+    public static readonly Pointer LocalPointer = new(new[] { 0x020A7CB0, 0x1F8, 0x170 });
+
+    public static Addresses CreateIslandAddresses(long @base)
     {
-        Beggars = 0x54B0,
-        Peasants = 0x5550,
-        Citizens = 0x5570,
-        Patricians = 0x5590,
-        Noblemen = 0x55B0,
-        Nomads = 0x54F0,
-        Envoys = 0x5510
-    };
+        return new Addresses(new Pointer(@base, true))
+        {
+            Beggars = 0x54B0,
+            Peasants = 0x5550,
+            Citizens = 0x5570,
+            Patricians = 0x5590,
+            Noblemen = 0x55B0,
+            Nomads = 0x54F0,
+            Envoys = 0x5510
+        };
+    }
 
     private Addresses(Pointer pointer)
     {
@@ -41,19 +46,22 @@ public class Addresses
 
 public class Pointer
 {
-    public Pointer(long @base) : this(@base, Array.Empty<int>())
+    public Pointer(long @base, bool isFixed) : this(@base, Array.Empty<int>(), isFixed)
     {
     }
 
-    public Pointer(int[] offsets) : this(0, offsets)
+    public Pointer(int[] offsets) : this(0, offsets, false)
     {
     }
 
-    public Pointer(long @base, int[] offsets)
+    private Pointer(long @base, int[] offsets, bool isFixed)
     {
         Base = @base;
         Offsets = offsets;
+        IsFixed = isFixed;
     }
+
+    public bool IsFixed { get; }
 
     public long Base { get; }
     public int[] Offsets { get; }

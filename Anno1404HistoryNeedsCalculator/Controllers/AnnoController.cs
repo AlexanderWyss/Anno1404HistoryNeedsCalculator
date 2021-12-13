@@ -17,8 +17,13 @@ public class AnnoController : ControllerBase
     }
 
     [HttpGet("info")]
-    public List<Info> GetInfo()
+    public Info GetInfo()
     {
         return _service.GetInfo();
+    }
+    [HttpGet("register")]
+    public void Register()
+    {
+        _service.Register();
     }
 }

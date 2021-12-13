@@ -1,5 +1,6 @@
 <div>
   <input type="button" (click)="refresh()" value="Refresh"/>
+  <input type="button" (click)="register()" value="Register"/>
   <input type="button" (click)="toggleAutoRefresh()" [value]="interval?'Freeze': 'Continue'"/>
   <small *ngIf="updateDate">{{updateDate | date: 'HH:mm'}}</small>
 </div>

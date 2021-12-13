@@ -1,5 +1,10 @@
 ﻿export interface Info {
-  name: string;
+  localId: string;
+  islands: IslandInfo[];
+}
+
+export interface IslandInfo {
+  id: string;
   population: Population;
   needs: Needs;
 }

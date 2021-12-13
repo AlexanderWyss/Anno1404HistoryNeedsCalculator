@@ -2,5 +2,6 @@
 
 public interface IAnnoService
 {
-    public List<Info> GetInfo();
+    public Info GetInfo();
+    public void Register();
 }

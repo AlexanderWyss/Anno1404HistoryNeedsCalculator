@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AnnoService} from "../anno.service";
-import {Info} from "../_models/Modes";
+import {IslandInfo} from "../_models/Modes";
 
 @Component({
   selector: 'app-home',
@@ -8,7 +8,7 @@ import {Info} from "../_models/Modes";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  infos?: Info[];
+  infos?: IslandInfo[];
   updateDate?: Date;
   interval?: number;
 
@@ -35,7 +35,16 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   refresh(): void {
     this.annoService.getInfo().subscribe(value => {
-      this.infos = value;
+      const infos: IslandInfo[] = [];
+      if (value.localId) {
+        let currentIslandIndex = value.islands.findIndex(island => island.id === value.localId);
+        if (currentIslandIndex != -1) {
+          infos.push(value.islands[currentIslandIndex]);
+          value.islands.splice(currentIslandIndex, 1);
+        }
+      }
+      infos.push(...value.islands);
+      this.infos = infos;
       this.updateDate = new Date();
     });
   }
@@ -46,5 +55,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     } else {
       this.startAutoRefresh();
     }
+  }
+
+  register() {
+    this.annoService.register().subscribe(() => this.refresh());
   }
 }

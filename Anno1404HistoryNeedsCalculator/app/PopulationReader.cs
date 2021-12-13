@@ -18,13 +18,7 @@ public class PopulationReader
     {
         try
         {
-            var baseAddress = addresses.Pointer.Base == 0
-                ? _process.MainModule.BaseAddress.ToInt64()
-                : _memoryReader.ReadAddressLong(addresses.Pointer.Base);
-            foreach (var offset in addresses.Pointer.Offsets)
-            {
-                baseAddress = _memoryReader.ReadAddressLong(baseAddress + offset);
-            }
+            var baseAddress = ResolvePointer(addresses.Pointer);
 
             var population = new Population()
             {
@@ -47,5 +41,23 @@ public class PopulationReader
 
             throw new PopulationReadException("Population read failed.", ex);
         }
+    }
+
+    public long ResolvePointer(Pointer pointer)
+    {
+        if (pointer.IsFixed)
+        {
+            return pointer.Base;
+        }
+
+        var baseAddress = pointer.Base == 0
+            ? _process.MainModule.BaseAddress.ToInt64()
+            : _memoryReader.ReadAddressLong(pointer.Base);
+        foreach (var offset in pointer.Offsets)
+        {
+            baseAddress = _memoryReader.ReadAddressLong(baseAddress + offset);
+        }
+
+        return baseAddress;
     }
 }

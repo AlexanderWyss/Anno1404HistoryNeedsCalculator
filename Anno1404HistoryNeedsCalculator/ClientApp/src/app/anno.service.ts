@@ -10,14 +10,18 @@ import {Router} from "@angular/router";
 })
 export class AnnoService {
   private baseUrl: string;
-  private selectedProductionChains: Record<string, ResourcesType|undefined> = {};
+  private selectedProductionChains: Record<string, ResourcesType | undefined> = {};
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, private router: Router) {
     this.baseUrl = baseUrl + 'api/';
   }
 
-  public getInfo(): Observable<Info[]> {
-    return this.http.get<Info[]>(this.baseUrl + 'info').pipe(this.handleError());
+  public getInfo(): Observable<Info> {
+    return this.http.get<Info>(this.baseUrl + 'info').pipe(this.handleError());
+  }
+
+  public register(): Observable<void> {
+    return this.http.get<void>(this.baseUrl + 'register').pipe(this.handleError());
   }
 
   private handleError<T>(): OperatorFunction<T, T> {
@@ -38,8 +42,8 @@ export class AnnoService {
     );
   }
 
-  getSelectedProductionChain(name?: string): ResourcesType|undefined {
-    if(name) {
+  getSelectedProductionChain(name?: string): ResourcesType | undefined {
+    if (name) {
       return this.selectedProductionChains[name];
     }
     return undefined;
