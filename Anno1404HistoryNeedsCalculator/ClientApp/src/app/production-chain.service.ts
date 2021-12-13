@@ -217,7 +217,7 @@ export class ProductionChainService {
     },
     mosaic: {
       factory: 'Mosaic Workshop',
-      requires: [{resource: 'quartz', factor: 1}, {resource: 'clay', factor: 2}]
+      requires: [{resource: 'quartz', factor: 0.9}, {resource: 'clay', factor: 2}]
     },
     clay: {
       factory: 'Clay Pit',
@@ -239,11 +239,11 @@ export class ProductionChainService {
     },
     cannons: {
       factory: 'Cannon Foundry',
-      requires: [{resource: 'iron', factor: 0.75}, {resource: 'wood', factor: 1}]
+      requires: [{resource: 'iron', factor: 0.75}, {resource: 'wood', factor: 2}]
     },
     warMachines: {
       factory: 'War Machines Workshop',
-      requires: [{resource: 'ropes', factor: 2}, {resource: 'wood', factor: 2}]
+      requires: [{resource: 'ropes', factor: 1.5}, {resource: 'wood', factor: 2}]
     }
   };
 
