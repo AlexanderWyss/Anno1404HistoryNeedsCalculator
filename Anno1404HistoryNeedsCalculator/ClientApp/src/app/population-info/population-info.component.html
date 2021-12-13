@@ -1,5 +1,5 @@
 <div *ngIf="info" class="container">
-  <h2>{{info.id}}</h2>
+  <h2>{{info.savedIsland ? info.savedIsland.name : info.id}}</h2>
   <div class="group">
     <h3>Population</h3>
     <div class="info-container">
@@ -11,8 +11,10 @@
   <div class="group">
     <h3>Needs</h3>
     <div class="info-container">
-      <div *ngFor="let item of info.needs | keyvalue: noOrder" (click)="setDisplayProductionChain(item.key)">
-        <app-resource-img [resource]="item.key" [value]="item.value" [decimal]="true"></app-resource-img>
+      <div *ngFor="let item of info.needs | keyvalue: noOrder" (click)="setDisplayProductionChain(item.key)"
+           [class]="getNeedsClass(item.key, item.value)">
+        <app-resource-img [resource]="item.key" [value]="item.value" [decimal]="true"
+                          [additionalValues]="[getBuiltNeedsBuildings(item.key)]"></app-resource-img>
       </div>
     </div>
   </div>

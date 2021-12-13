@@ -1,0 +1,28 @@
+﻿{
+  "islands": [
+    {
+      "id": "",
+      "fish": 0,
+      "spices": 0,
+      "bread": 0,
+      "meat": 0,
+      "most": 0,
+      "beer": 0,
+      "wine": 0,
+      "garments": 0,
+      "jerkins": 0,
+      "furCoats": 0,
+      "robes": 0,
+      "books": 0,
+      "candleSticks": 0,
+      "glasses": 0,
+      "dates": 0,
+      "milk": 0,
+      "carpets": 0,
+      "coffee": 0,
+      "pearlNecklaces": 0,
+      "perfume": 0,
+      "marzipan": 0
+    }
+  ]
+}

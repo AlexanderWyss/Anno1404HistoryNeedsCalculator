@@ -14,16 +14,18 @@ public class Info
 
 public class IslandInfo
 {
-    public IslandInfo(string id, Population population, Needs needs)
+    public IslandInfo(string id, Population population, Needs needs, SavedIsland? savedIsland)
     {
         Id = id;
         Population = population;
         Needs = needs;
+        SavedIsland = savedIsland;
     }
 
     public string Id { get; }
     public Population Population { get; }
     public Needs Needs { get; }
+    public SavedIsland? SavedIsland { get; }
 }
 
 public class Population
@@ -37,7 +39,32 @@ public class Population
     public double Envoys { get; init; }
 }
 
-public class Needs
+public interface INeeds
+{
+    public double Fish { get; }
+    public double Spices { get; }
+    public double Bread { get; }
+    public double Meat { get; }
+    public double Most { get; }
+    public double Beer { get; }
+    public double Wine { get; }
+    public double Garments { get; }
+    public double Jerkins { get; }
+    public double FurCoats { get; }
+    public double Robes { get; }
+    public double Books { get; }
+    public double CandleSticks { get; }
+    public double Glasses { get; }
+    public double Dates { get; }
+    public double Milk { get; }
+    public double Carpets { get; }
+    public double Coffee { get; }
+    public double PearlNecklaces { get; }
+    public double Perfume { get; }
+    public double Marzipan { get; }
+}
+
+public class Needs : INeeds
 {
     private readonly Population _population;
 

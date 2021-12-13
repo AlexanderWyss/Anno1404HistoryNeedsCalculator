@@ -30,9 +30,26 @@ export class PopulationInfoComponent implements OnInit {
     } else {
       this.selectedProductionChain = {
         resource: resource as ResourcesType,
-        factor: this.info ? this.info.needs[resource as NeedsType]: 0
+        factor: this.info ? this.info.needs[resource as NeedsType] : 0
       };
     }
     this.annoService.setSelectedProductionChain(this.info?.id, this.selectedProductionChain?.resource);
+  }
+
+  getBuiltNeedsBuildings(key: string): number {
+    return this.info?.savedIsland ? this.info.savedIsland[key as NeedsType] : NaN;
+  }
+
+  getNeedsClass(key: string, value: number): string {
+    if (value === 0) {
+      return '';
+    }
+    let builtNeedsBuildings = this.getBuiltNeedsBuildings(key);
+    if (builtNeedsBuildings < value) {
+      return 'error';
+    } else if (builtNeedsBuildings < value + 0.25) {
+      return 'warn';
+    }
+    return '';
   }
 }

@@ -10,3 +10,12 @@
   box-shadow: 0.05em 0.05em 0.1em gray;
   margin: 0.5em 0;
 }
+
+.warn {
+  background-color: yellow;
+}
+
+.error {
+  background-color: red;
+  color: white;
+}
