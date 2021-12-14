@@ -28,7 +28,6 @@ export class PopulationInfoComponent implements OnInit {
   ngOnInit(): void {
     this.setDisplayProductionChain(this.annoService.getSelectedProductionChain(this.info?.id));
     if (this.info) {
-      console.log(this.info);
       this.mappedIsland = this.info.savedIsland?.id;
     }
   }
