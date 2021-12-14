@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AnnoService} from "../anno.service";
-import {IslandInfo} from "../_models/Modes";
+import {IslandInfo, SavedIsland} from "../_models/Modes";
 
 @Component({
   selector: 'app-home',
@@ -11,6 +11,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   infos?: IslandInfo[];
   updateDate?: Date;
   interval?: number;
+  newIslandName?: string;
+  remainingSavedIslands?: SavedIsland[];
 
   constructor(private annoService: AnnoService) {
   }
@@ -45,6 +47,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
       infos.push(...value.islands);
       this.infos = infos;
+      this.remainingSavedIslands = value.remainingSavedIslands;
       this.updateDate = new Date();
     });
   }
@@ -59,5 +62,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   register() {
     this.annoService.register().subscribe(() => this.refresh());
+  }
+
+  createIsland() {
+    if (this.newIslandName) {
+      this.annoService.createIsland({name: this.newIslandName}).subscribe(() => this.refresh());
+      this.newIslandName = "";
+    }
   }
 }

@@ -33,4 +33,16 @@ public class AnnoController : ControllerBase
     {
         _service.Update(savedIsland);
     }
+    
+    [HttpPost("create-island")]
+    public void CreateIsland(CreateIsland createIsland)
+    {
+        _service.CreateIsland(createIsland);
+    }
+    
+    [HttpPost("map-island")]
+    public void CreateIsland(MapIsland mapIsland)
+    {
+        _service.MapIsland(mapIsland);
+    }
 }

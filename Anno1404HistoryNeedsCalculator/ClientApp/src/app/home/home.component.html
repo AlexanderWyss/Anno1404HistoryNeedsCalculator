@@ -3,7 +3,11 @@
   <input type="button" (click)="register()" value="Register"/>
   <input type="button" (click)="toggleAutoRefresh()" [value]="interval?'Freeze': 'Continue'"/>
   <small *ngIf="updateDate">{{updateDate | date: 'HH:mm'}}</small>
+  <!--suppress AngularUndefinedBinding -->
+  <input type="text" [(ngModel)]="newIslandName" (keyup.enter)="createIsland()"/>
 </div>
 <div *ngIf="infos">
-  <app-population-info *ngFor="let info of infos" [info]="info"></app-population-info>
+  <app-population-info *ngFor="let info of infos" [info]="info"
+                       [remainingSavedIsland]="['Local', 'Global'].includes(info.id) ? undefined : remainingSavedIslands"
+                       (refreshRequired)="refresh()"></app-population-info>
 </div>

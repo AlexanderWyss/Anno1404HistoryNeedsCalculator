@@ -1,9 +1,10 @@
 ﻿export interface Info {
   localId: string;
   islands: IslandInfo[];
+  remainingSavedIslands: SavedIsland[];
 }
 
-export  interface SavedIsland extends Needs {
+export interface SavedIsland extends Needs {
   id: string;
   name: string;
 }
@@ -13,6 +14,15 @@ export interface IslandInfo {
   population: Population;
   needs: Needs;
   savedIsland?: SavedIsland;
+}
+
+export interface CreateIsland {
+  name: string;
+}
+
+export interface MapIsland {
+  islandId: string;
+  savedIslandId?: string;
 }
 
 export type PopulationType = 'beggars' |

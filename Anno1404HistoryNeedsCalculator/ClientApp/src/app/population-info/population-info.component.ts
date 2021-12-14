@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {KeyValue} from "@angular/common";
-import {IslandInfo, NeedsType, ResourcesType} from "../_models/Modes";
+import {IslandInfo, NeedsType, ResourcesType, SavedIsland} from "../_models/Modes";
 import {ProductionChainInput} from "../production-chain/production-chain.component";
 import {AnnoService} from "../anno.service";
 
@@ -12,16 +12,25 @@ import {AnnoService} from "../anno.service";
 export class PopulationInfoComponent implements OnInit {
   @Input()
   info?: IslandInfo;
+  @Input()
+  remainingSavedIsland?: SavedIsland[];
   noOrder = (a: KeyValue<string, number>, b: KeyValue<string, number>): number => {
     return 0;
   };
   selectedProductionChain?: ProductionChainInput;
+  mappedIsland?: string;
+  @Output()
+  refreshRequired = new EventEmitter();
 
   constructor(private annoService: AnnoService) {
   }
 
   ngOnInit(): void {
     this.setDisplayProductionChain(this.annoService.getSelectedProductionChain(this.info?.id));
+    if (this.info) {
+      console.log(this.info);
+      this.mappedIsland = this.info.savedIsland?.id;
+    }
   }
 
   setDisplayProductionChain(resource?: string) {
@@ -57,6 +66,15 @@ export class PopulationInfoComponent implements OnInit {
     if (this.info?.savedIsland) {
       this.info.savedIsland[key as NeedsType] += diff;
       this.annoService.updateBuildings(this.info.savedIsland).subscribe();
+    }
+  }
+
+  mapIsland() {
+    if (this.info) {
+      this.annoService.mapIsland({
+        islandId: this.info?.id,
+        savedIslandId: this.mappedIsland
+      }).subscribe(() => this.refreshRequired.emit());
     }
   }
 }

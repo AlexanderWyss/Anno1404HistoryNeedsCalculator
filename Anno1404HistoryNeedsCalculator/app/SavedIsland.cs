@@ -2,6 +2,37 @@
 
 public class SavedIsland : INeeds
 {
+    public SavedIsland()
+    {
+    }
+
+    public SavedIsland(string id, string name)
+    {
+        Id = id;
+        Name = name;
+        Fish = 0;
+        Spices = 0;
+        Bread = 0;
+        Meat = 0;
+        Most = 0;
+        Beer = 0;
+        Wine = 0;
+        Garments = 0;
+        Jerkins = 0;
+        FurCoats = 0;
+        Robes = 0;
+        Books = 0;
+        CandleSticks = 0;
+        Glasses = 0;
+        Dates = 0;
+        Milk = 0;
+        Carpets = 0;
+        Coffee = 0;
+        PearlNecklaces = 0;
+        Perfume = 0;
+        Marzipan = 0;
+    }
+
     public string Id { get; set; }
     public string Name { get; set; }
     public double Fish { get; set; }
@@ -30,4 +61,16 @@ public class SavedIsland : INeeds
 public class SavedIslands
 {
     public List<SavedIsland> Islands { get; set; }
+}
+
+public class CreateIsland
+{
+    public string Name { get; set; }
+}
+
+
+public class MapIsland
+{
+    public string IslandId { get; set; }
+    public string SavedIslandId { get; set; }
 }

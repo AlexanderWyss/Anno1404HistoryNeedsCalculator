@@ -2,6 +2,11 @@
   <h2>{{info.savedIsland ? info.savedIsland.name : info.id}}</h2>
   <div class="group">
     <h3>Population</h3>
+    <select *ngIf="remainingSavedIsland" [(ngModel)]="mappedIsland" (change)="mapIsland()">
+      <option *ngIf="info.savedIsland" [value]="info.savedIsland.id">{{info.savedIsland.name}}</option>
+      <option *ngFor="let remainingIsland of remainingSavedIsland" [value]="remainingIsland.id">{{remainingIsland.name}}</option>
+      <option [value]="null">None</option>
+    </select>
     <div class="info-container">
       <div *ngFor="let item of info.population | keyvalue: noOrder">
         <app-resource-img [resource]="item.key" [value]="item.value" [decimal]="false"></app-resource-img>

@@ -6,6 +6,7 @@ namespace Anno1404HistoryNeedsCalculator.app;
 public class AnnoService : IAnnoService
 {
     private static readonly Dictionary<string, Addresses> KnownIslands = new();
+    private static readonly Dictionary<string, string> IslandToBuild = new();
 
     public Info GetInfo()
     {
@@ -37,7 +38,7 @@ public class AnnoService : IAnnoService
             }
         }
 
-        return new Info(localId, infos!);
+        return new Info(localId, infos!, savedIslands == null ? new List<SavedIsland>() : savedIslands.Islands);
     }
 
 
@@ -72,9 +73,14 @@ public class AnnoService : IAnnoService
         {
             var population = reader.ReadPopulation(addresses);
             SavedIsland? savedIsland = null;
-            if (savedIslands != null)
+            if (savedIslands != null && IslandToBuild.ContainsKey(id))
             {
-                savedIsland = savedIslands.Islands.Find(island => island.Id == id);
+                var savedIslandId = IslandToBuild[id];
+                savedIsland = savedIslands.Islands.Find(island => island.Id == savedIslandId);
+                if (savedIsland != null)
+                {
+                    savedIslands.Islands.Remove(savedIsland);
+                }
             }
 
             return new IslandInfo(id, population, new Needs(population), savedIsland);
@@ -87,21 +93,41 @@ public class AnnoService : IAnnoService
     }
 
 
-    private const string Path = "C:\\Users\\alexs\\development\\Anno1404HistoryNeedsCalculator\\Anno1404HistoryNeedsCalculator\\Data\\islands.json";
+    private const string Path =
+        "C:\\Users\\alexs\\development\\Anno1404HistoryNeedsCalculator\\Anno1404HistoryNeedsCalculator\\Data\\islands.json";
 
     public void Update(SavedIsland savedIsland)
     {
         var savedIslands = LoadSavedIslands();
-        if (savedIslands!= null)
+        if (savedIslands != null)
         {
             var index = savedIslands.Islands.FindIndex(island => island.Id == savedIsland.Id);
             if (index != -1)
             {
                 savedIslands.Islands[index] = savedIsland;
-                File.WriteAllText(Path, JsonSerializer.Serialize(savedIslands));
+                SaveIslands(savedIslands);
             }
         }
     }
+
+    private static void SaveIslands(SavedIslands savedIslands)
+    {
+        File.WriteAllText(Path, JsonSerializer.Serialize(savedIslands));
+    }
+
+    public void CreateIsland(CreateIsland createIsland)
+    {
+        var savedIslands = LoadSavedIslands();
+        var maxId = savedIslands.Islands.Select(island => long.Parse(island.Id)).Max();
+        savedIslands.Islands.Add(new SavedIsland((maxId + 1).ToString(), createIsland.Name));
+        SaveIslands(savedIslands);
+    }
+
+    public void MapIsland(MapIsland mapIsland)
+    {
+        IslandToBuild[mapIsland.IslandId] = mapIsland.SavedIslandId;
+    }
+
     private SavedIslands? LoadSavedIslands()
     {
         return JsonSerializer.Deserialize<SavedIslands>(File.ReadAllText(

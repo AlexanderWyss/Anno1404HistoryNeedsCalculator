@@ -2,14 +2,16 @@ namespace Anno1404HistoryNeedsCalculator.app;
 
 public class Info
 {
-    public Info(string? localId, List<IslandInfo> islands)
+    public Info(string? localId, List<IslandInfo> islands, List<SavedIsland> remainingSavedIslands)
     {
         LocalId = localId;
         Islands = islands;
+        RemainingSavedIslands = remainingSavedIslands;
     }
 
     public string? LocalId { get; }
     public List<IslandInfo> Islands { get; }
+    public List<SavedIsland> RemainingSavedIslands { get; }
 }
 
 public class IslandInfo
