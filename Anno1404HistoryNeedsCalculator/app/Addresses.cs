@@ -2,7 +2,7 @@
 
 public class Addresses
 {
-    public static readonly Addresses Global = new(new Pointer(0x7FF7A29B7040, false))
+    public static readonly Addresses Global = new(new Pointer(new[] { 0x2097040 }))
     {
         Beggars = 0xEA44,
         Peasants = 0xEAE4,
