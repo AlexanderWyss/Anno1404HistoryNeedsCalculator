@@ -56,15 +56,14 @@ export class AnnoService {
 
   getSelectedProductionChain(name?: string): ResourcesType | undefined {
     if (name) {
-      return this.selectedProductionChains['fixed'];
+      return this.selectedProductionChains[name];
     }
     return undefined;
   }
 
   setSelectedProductionChain(name?: string, selectedProductionChain?: ResourcesType) {
     if (name) {
-      //this.selectedProductionChains[name] = selectedProductionChain;
-      this.selectedProductionChains['fixed'] = selectedProductionChain;
+      this.selectedProductionChains[name] = selectedProductionChain;
     }
   }
 }
