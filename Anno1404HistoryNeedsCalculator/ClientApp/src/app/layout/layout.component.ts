@@ -14,8 +14,8 @@ export class LayoutComponent implements OnInit, OnChanges {
     beer: ['beer'],
     books: ['five_fields_4', 'five_fields_2'],
     bread: ['bread'],
-    candleSticks: [],
-    carpets: [],
+    candleSticks: ['beeswax', 'hemp_cider'],
+    carpets: ['five_fields_4', 'five_fields_2'],
     coffee: [],
     dates: ['five_fields_4', 'five_fields_2'],
     fish: [],
@@ -29,9 +29,9 @@ export class LayoutComponent implements OnInit, OnChanges {
     most: ['hemp_cider'],
     pearlNecklaces: [],
     perfume: [],
-    robes: [],
+    robes: ['five_fields_4', 'five_fields_2'],
     spices: ['spice'],
-    wine: ['wine']
+    wine: ['wine', 'five_fields_4', 'five_fields_2']
   };
 
   constructor() {

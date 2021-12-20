@@ -73,7 +73,7 @@ export class ProductionChainService {
     },
     barrels: {
       factory: 'Barrel Cooperage',
-      requires: [{resource: 'wood', factor: 1}, {resource: 'iron', factor: 0.5}]
+      requires: [{resource: 'wood', factor: 0.67}, {resource: 'iron', factor: 0.5}]
     },
     wood: {
       factory: 'Lumberjack\'s Hut'
