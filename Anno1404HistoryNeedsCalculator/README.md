@@ -1,6 +1,7 @@
 ﻿# TODO
-* insel speichern wenn einmal endeckt
+* pin islands
+* calculate for amount of buildings (manual input or auto detect for next gen)
+* deregister islands
+* fix temp production chain expand after refresh
 * Layout
 * alternative Produktionsketten (eg coal)
-* expand collapse sub produktionsketten
-* alle produktionsketten (nicht nur needs) 
