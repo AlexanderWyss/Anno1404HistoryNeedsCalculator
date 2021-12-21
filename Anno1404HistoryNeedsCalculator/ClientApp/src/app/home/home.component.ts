@@ -38,6 +38,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   refresh(): void {
     this.annoService.getInfo().subscribe(value => {
       const infos: IslandInfo[] = [];
+      if (this.annoService.getPinned()) {
+        let currentIslandIndex = value.islands.findIndex(island => island.id === this.annoService.getPinned());
+        if (currentIslandIndex != -1) {
+          infos.push(value.islands[currentIslandIndex]);
+          value.islands.splice(currentIslandIndex, 1);
+        }
+      }
       if (value.localId) {
         let currentIslandIndex = value.islands.findIndex(island => island.id === value.localId);
         if (currentIslandIndex != -1) {

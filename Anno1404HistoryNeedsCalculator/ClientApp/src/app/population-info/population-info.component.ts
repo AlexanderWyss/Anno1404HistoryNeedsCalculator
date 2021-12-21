@@ -21,13 +21,15 @@ export class PopulationInfoComponent implements OnInit {
   mappedIsland?: string;
   @Output()
   refreshRequired = new EventEmitter();
+  isPinned: boolean = false;
 
   constructor(private annoService: AnnoService) {
   }
 
   ngOnInit(): void {
-    this.setDisplayProductionChain(this.annoService.getSelectedProductionChain(this.info?.id));
     if (this.info) {
+      this.setDisplayProductionChain(this.annoService.getSelectedProductionChain(this.info.id));
+      this.isPinned = this.info.id === this.annoService.getPinned();
       this.mappedIsland = this.info.savedIsland?.id;
     }
   }
@@ -81,5 +83,14 @@ export class PopulationInfoComponent implements OnInit {
     if (this.info) {
       this.annoService.deregister(this.info.id).subscribe(() => this.refreshRequired.emit());
     }
+  }
+
+  togglePin() {
+    if (!this.isPinned && this.info) {
+      this.annoService.setPinned(this.info.id);
+    } else {
+      this.annoService.setPinned(undefined);
+    }
+    this.refreshRequired.emit();
   }
 }

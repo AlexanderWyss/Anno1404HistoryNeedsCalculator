@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 export class AnnoService {
   private baseUrl: string;
   private selectedProductionChains: Record<string, ResourcesType | undefined> = {};
+  private pinned: string | undefined = undefined;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, private router: Router) {
     this.baseUrl = baseUrl + 'api/';
@@ -69,5 +70,13 @@ export class AnnoService {
     if (name) {
       this.selectedProductionChains[name] = selectedProductionChain;
     }
+  }
+
+  setPinned(id: string | undefined) {
+    this.pinned = id;
+  }
+
+  getPinned(): string | undefined {
+    return this.pinned;
   }
 }
