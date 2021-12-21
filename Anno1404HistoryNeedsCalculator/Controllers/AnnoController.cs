@@ -21,25 +21,36 @@ public class AnnoController : ControllerBase
     {
         return _service.GetInfo();
     }
-    
+
     [HttpGet("register")]
     public void Register()
     {
         _service.Register();
     }
-    
+
+    public class DeregisterDto
+    {
+        public string Id { get; set; }
+    }
+
+    [HttpPost("deregister")]
+    public void Deregister(DeregisterDto dto)
+    {
+        _service.Deregister(dto.Id);
+    }
+
     [HttpPost("update")]
     public void Update(SavedIsland savedIsland)
     {
         _service.Update(savedIsland);
     }
-    
+
     [HttpPost("create-island")]
     public void CreateIsland(CreateIsland createIsland)
     {
         _service.CreateIsland(createIsland);
     }
-    
+
     [HttpPost("map-island")]
     public void CreateIsland(MapIsland mapIsland)
     {

@@ -76,4 +76,10 @@ export class PopulationInfoComponent implements OnInit {
       }).subscribe(() => this.refreshRequired.emit());
     }
   }
+
+  deregister() {
+    if (this.info) {
+      this.annoService.deregister(this.info.id).subscribe(() => this.refreshRequired.emit());
+    }
+  }
 }

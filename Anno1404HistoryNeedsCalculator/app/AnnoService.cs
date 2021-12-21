@@ -53,6 +53,15 @@ public class AnnoService : IAnnoService
         }
     }
 
+    public void Deregister(string id)
+    {
+        KnownIslands.Remove(id);
+        if (IslandToBuild.ContainsKey(id))
+        {
+            IslandToBuild.Remove(id);
+        }
+    }
+
     private static string? ResolveLocalId(PopulationReader populationReader)
     {
         try

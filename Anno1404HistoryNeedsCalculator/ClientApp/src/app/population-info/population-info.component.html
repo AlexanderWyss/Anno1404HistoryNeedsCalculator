@@ -7,6 +7,7 @@
       <option *ngFor="let remainingIsland of remainingSavedIsland" [value]="remainingIsland.id">{{remainingIsland.name}}</option>
       <option [value]="null">None</option>
     </select>
+    <input *ngIf="remainingSavedIsland" type="button" (click)="deregister()" value="Deregister"/>
     <div class="info-container">
       <div *ngFor="let item of info.population | keyvalue: noOrder">
         <app-resource-img [resource]="item.key" [value]="item.value" [decimal]="false"></app-resource-img>

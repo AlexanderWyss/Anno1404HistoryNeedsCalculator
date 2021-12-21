@@ -24,6 +24,10 @@ export class AnnoService {
     return this.http.get<void>(this.baseUrl + 'register').pipe(this.handleError());
   }
 
+  public deregister(id: string): Observable<void> {
+    return this.http.post<void>(this.baseUrl + 'deregister', {id: id}).pipe(this.handleError());
+  }
+
   public updateBuildings(savedIsland: SavedIsland): Observable<void> {
     return this.http.post<void>(this.baseUrl + 'update', savedIsland).pipe(this.handleError());
   }
