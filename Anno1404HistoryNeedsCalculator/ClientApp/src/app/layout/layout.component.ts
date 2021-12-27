@@ -28,7 +28,7 @@ export class LayoutComponent implements OnInit, OnChanges {
     milk: ['bread'],
     most: ['hemp_cider'],
     pearlNecklaces: [],
-    perfume: [],
+    perfume: ['roses'],
     robes: ['five_fields_4', 'five_fields_2'],
     spices: ['spice'],
     wine: ['wine', 'five_fields_4', 'five_fields_2']
